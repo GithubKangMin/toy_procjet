@@ -23,8 +23,29 @@ public class HelloController {
     }
 
     @GetMapping("hello-string")
-    @ResponseBody
+    @ResponseBody//http에서 바디에 이 리턴 데이터를 직접 넣어주겠다는 코드
     public String helloString(@RequestParam("name") String name) {
-        return "hello " + name;
+        return "hello " + name; // "hello spring" view 없이 입력값이 그대로 보여줌
+    }
+
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
+
