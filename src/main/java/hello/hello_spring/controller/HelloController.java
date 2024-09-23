@@ -16,7 +16,7 @@ public class HelloController {
         return "hello";
     }
 
-    @GetMapping("hello-mvc")
+    @GetMapping("hello-mvc") // http  get 요청을 처리하는 애너테이션 /URL 경로: 사용자가 http://서버주소/hello-mvc로 GET 요청을 보내면 이 메서드가 실행됩니다.
     public String helloMvc(@RequestParam("name") String name, Model model) {
         model.addAttribute("name", name);
         return "hello-template";
@@ -33,11 +33,11 @@ public class HelloController {
     public Hello helloApi(@RequestParam("name") String name) {
         Hello hello = new Hello();
         hello.setName(name);
-        return hello;
+        return hello; // 처음으로 문자가 아닌 객체를 넘긴 순간 json으로 넘어간다.
     }
-
+    // 자바빈 표준방식
     static class Hello {
-        private String name;
+        private String name;// 메서드로 접근
 
         public String getName() {
             return name;
